@@ -62,7 +62,7 @@ indices = [
 ]
 
 def get_next_word(letters: List[str]) -> str:
-    file_path = Path("server/five.txt").resolve()
+    file_path = Path(__file__).parent / "five.txt"
     filtered_frequencies = {letter: frequencies[ord(letter) - ord('a')] for letter in letters}
     total_frequency = sum(filtered_frequencies.values())
     normalized_frequencies = {letter: freq / total_frequency for letter, freq in filtered_frequencies.items()}
