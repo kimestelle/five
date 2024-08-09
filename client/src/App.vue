@@ -5,10 +5,3 @@ import { RouterView } from 'vue-router'
 <template>
   <RouterView />
 </template>
-
-<style>
-#app {
-  display:block;
-  background-color: rgb(23, 23, 23);
-}
-</style>

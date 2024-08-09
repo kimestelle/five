@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <span className='title'>five.</span>
+    <span className='title'>fives</span>
     <div class="letter-bar">
       <div v-for="letter in alphabet" :key="letter" @click="toggleLetter(letter)" :class="{underline: selectedLetters.includes(letter)}">
         {{ letter.toUpperCase() }}
@@ -134,6 +134,7 @@ export default {
 
 .word-container {
   display: flex;
+  height: 60svh;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
