@@ -8,13 +8,13 @@
       {
         "src": "client/package.json",
         "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
+        "config": { "distDir": "client/dist" }
       }
     ],
     "routes": [
       {
         "src": "/static/(.*)",
-        "dest": "/dist/$1"
+        "dest": "/client/dist/$1"
       },
       {
         "src": "/(.*)",
@@ -22,7 +22,7 @@
       },
       {
         "src": "/assets/(.*)",
-        "dest": "/dist/assets/$1"
+        "dest": "/client/dist/assets/$1"
       }
     ]
   }
