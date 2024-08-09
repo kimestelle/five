@@ -124,6 +124,7 @@ export default {
   flex-direction: row;
   font-size: 2svh;
   color: white;
+  cursor: pointer;
 }
 
 .underline {
