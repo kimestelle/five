@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import random
-from get_next_word import get_next_word
+from .get_next_word import get_next_word
 
 # instantiate the app
 app = Flask(__name__)
