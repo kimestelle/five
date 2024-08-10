@@ -73,16 +73,16 @@ export default {
       if (inputLetter === currentWord[this.currentLetterIndex]) {
         this.currentLetterIndex++;
 
-        // If the word is completed, move to the next word
         if (this.currentLetterIndex === currentWord.length) {
           this.currentLetterIndex = 0;
-          this.words.shift(); // Remove the first word
-          if (this.selectedLetters.length === 0) {
-            const newWord = 'fives'
-          } else {
+          this.words.shift(); 
+
+          if (this.selectedLetters.length != 0) {
             const newWord = await this.getWord();
+            this.words.push(newWord);
+          } else {
+            this.words.push('fives');
           }
-          this.words.push(newWord);
         }
       }
     }
