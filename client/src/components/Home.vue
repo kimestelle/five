@@ -77,7 +77,11 @@ export default {
         if (this.currentLetterIndex === currentWord.length) {
           this.currentLetterIndex = 0;
           this.words.shift(); // Remove the first word
-          const newWord = await this.getWord();
+          if (this.selectedLetters.length === 0) {
+            const newWord = 'fives'
+          } else {
+            const newWord = await this.getWord();
+          }
           this.words.push(newWord);
         }
       }
