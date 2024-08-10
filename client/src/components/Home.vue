@@ -45,10 +45,14 @@ export default {
       }
     },
     async getWord() {
-      const response = await axios.post('https://kestelle.pythonanywhere.com/next_word', {
-        letters: this.selectedLetters
-      });
-      return response.data.word;
+      if (this.selectedLetters.length != 0) {
+          const response = await axios.post('https://kestelle.pythonanywhere.com/next_word', {
+            letters: this.selectedLetters
+          });
+          return response.data.word;
+          } else {
+            return 'fives';
+      }
     },
     async populateWords() {
       this.words = [];
@@ -80,12 +84,8 @@ export default {
           this.currentLetterIndex = 0;
           this.words.shift(); 
 
-          if (this.selectedLetters.length != 0) {
-            const newWord = await this.getWord();
-            this.words.push(newWord);
-          } else {
-            this.words.push('fives');
-          }
+          const newWord = await this.getWord();
+          this.words.push(newWord);
         }
       }
     }
