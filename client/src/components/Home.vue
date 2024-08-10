@@ -2,10 +2,11 @@
   <div class="container">
     <span className='title'>fives</span>
     <div class="letter-bar">
-      <div v-for="letter in alphabet" :key="letter" @click="toggleLetter(letter)" :class="{underline: selectedLetters.includes(letter)}">
+      <div class='letter' v-for="letter in alphabet" :key="letter" @click="toggleLetter(letter)" :class="{underline: selectedLetters.includes(letter)}">
         {{ letter.toUpperCase() }}
       </div>
     </div>
+    <span className='reset' @click="populateWords()">reset</span>
     <div class="word-container">
       <span class="word" v-for="(word, index) in words" :key="index">
         <a class="unstyled-link" :href="`https://www.merriam-webster.com/dictionary/${word}`" target="_blank">
@@ -101,6 +102,21 @@ export default {
 
 <style>
   @import url("https://use.typekit.net/qar6hrg.css");
+  .reset {
+    font-family: "aglet-mono-variable-italic", sans-serif;
+    font-style: italic;
+    font-variation-settings: "wght" 400;
+    color: gray;
+    cursor: pointer;
+  }
+
+  .reset:hover, .letter:hover {
+    color:white;
+  }
+
+  .letter {
+    color: gray;
+  }
 
   .unstyled-link {
   text-decoration: none;
