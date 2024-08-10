@@ -42,7 +42,7 @@ export default {
       }
     },
     async getWord() {
-      const response = await axios.post('http://127.0.0.1:5001/next_word', {
+      const response = await axios.post('https://kestelle.pythonanywhere.com/next_word', {
         letters: this.selectedLetters
       });
       return response.data.word;
