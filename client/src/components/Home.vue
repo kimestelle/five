@@ -8,9 +8,11 @@
     </div>
     <div class="word-container">
       <span class="word" v-for="(word, index) in words" :key="index">
+        <a class="unstyled-link" :href="`https://www.merriam-webster.com/dictionary/${word}`" target="_blank">
         <span v-for="(letter, idx) in word" :key="idx" :class="getLetterClass(idx, index)">
           {{ letter }}
         </span>
+        </a>
       </span>
     </div>
   </div>
@@ -100,7 +102,17 @@ export default {
 <style>
   @import url("https://use.typekit.net/qar6hrg.css");
 
-
+  .unstyled-link {
+  text-decoration: none;
+  color: inherit;
+  /* Additional reset styles */
+  font-weight: normal;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
 .side-credits {
   position: absolute;
   right: 8svw;
@@ -147,10 +159,6 @@ export default {
   font-size: 8svh;
   font-family: "aglet-mono-variable", sans-serif;
   font-variation-settings: "wght" 400;
-}
-
-.word-container::before {
-  background: linear-gradient(transparent, gray);
 }
 
 .word {
