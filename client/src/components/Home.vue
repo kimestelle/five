@@ -6,7 +6,7 @@
         {{ letter.toUpperCase() }}
       </div>
     </div>
-    <span className='reset' @click="populateWords()">reset</span>
+    <span className='small clickable' @click="populateWords()">reset</span>
     <div class="word-container">
       <span class="word" v-for="(word, index) in words" :key="index">
         <a class="unstyled-link" :href="`https://www.merriam-webster.com/dictionary/${word}`" target="_blank">
@@ -16,6 +16,7 @@
         </a>
       </span>
     </div>
+    <span className="small">type! (if you can)</span>
   </div>
   <!-- <div class="side-credits">
         5757 five-letter english word from the stanford graphbase.
@@ -102,15 +103,18 @@ export default {
 
 <style>
   @import url("https://use.typekit.net/qar6hrg.css");
-  .reset {
+  .small {
     font-family: "aglet-mono-variable-italic", sans-serif;
     font-style: italic;
     font-variation-settings: "wght" 400;
     color: gray;
+  }
+
+  .clickable {
     cursor: pointer;
   }
 
-  .reset:hover, .letter:hover {
+  .clickable:hover, .letter:hover {
     color:white;
   }
 
