@@ -8,7 +8,8 @@
     </div>
     <span className='small clickable' @click="populateWords()">reset</span>
     <div class="word-container">
-      <span class="word" v-for="(word, index) in words" :key="index">
+      <div v-if="isLoading" class="loading-message">cooking alphabet soup...</div>
+      <span v-else class="word" v-for="(word, index) in words" :key="index">
         <a class="unstyled-link" :href="`https://www.merriam-webster.com/dictionary/${word}`" target="_blank">
         <span v-for="(letter, idx) in word" :key="idx" :class="getLetterClass(idx, index)">
           {{ letter }}
@@ -33,7 +34,8 @@ export default {
       selectedLetters: ['a'],
       words: [],
       currentWordIndex: 0,
-      currentLetterIndex: 0
+      currentLetterIndex: 0,
+      isLoading: false // Added loading state
     };
   },
   methods: {
@@ -46,21 +48,23 @@ export default {
       }
     },
     async getWord() {
-      if (this.selectedLetters.length != 0) {
-          const response = await axios.post('https://kestelle.pythonanywhere.com/next_word', {
-            letters: this.selectedLetters
-          });
-          return response.data.word;
-          } else {
-            return 'fives';
+      if (this.selectedLetters.length !== 0) {
+        const response = await axios.post('https://kestelle.pythonanywhere.com/next_word', {
+          letters: this.selectedLetters
+        });
+        return response.data.word;
+      } else {
+        return 'fives';
       }
     },
     async populateWords() {
+      this.isLoading = true; // Set loading to true
       this.words = [];
       for (let i = 0; i < 5; i++) {
         const word = await this.getWord();
         this.words.push(word);
       }
+      this.isLoading = false; // Set loading to false after words are loaded
     },
     getLetterClass(idx, wordIndex) {
       if (wordIndex < this.currentWordIndex) {
@@ -83,7 +87,7 @@ export default {
 
         if (this.currentLetterIndex === currentWord.length) {
           this.currentLetterIndex = 0;
-          this.words.shift(); 
+          this.words.shift();
 
           const newWord = await this.getWord();
           this.words.push(newWord);
@@ -93,13 +97,13 @@ export default {
   },
   mounted() {
     this.populateWords();
-    window.addEventListener('keydown', this.onKeydown); // Listen for keydown events globally
+    window.addEventListener('keydown', this.onKeydown);
   },
   beforeUnmount() {
-    window.removeEventListener('keydown', this.onKeydown); // Clean up the event listener
+    window.removeEventListener('keydown', this.onKeydown);
   }
 };
-</script>
+
 
 <style>
   @import url("https://use.typekit.net/qar6hrg.css");
