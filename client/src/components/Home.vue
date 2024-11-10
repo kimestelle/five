@@ -58,13 +58,13 @@ export default {
       }
     },
     async populateWords() {
-      this.isLoading = true; // Set loading to true
+      this.isLoading = true;
       this.words = [];
       for (let i = 0; i < 5; i++) {
         const word = await this.getWord();
         this.words.push(word);
       }
-      this.isLoading = false; // Set loading to false after words are loaded
+      this.isLoading = false;
     },
     getLetterClass(idx, wordIndex) {
       if (wordIndex < this.currentWordIndex) {
@@ -103,6 +103,7 @@ export default {
     window.removeEventListener('keydown', this.onKeydown);
   }
 };
+</script>
 
 
 <style>
@@ -142,6 +143,10 @@ export default {
   right: 8svw;
   top: 10svh;
   width: 20svw;
+}
+
+.loading-message {
+  font-size: 2svh;
 }
 
 .title {
